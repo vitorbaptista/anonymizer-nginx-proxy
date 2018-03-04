@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  nginx-proxy:
+    build: ../
+    ports:
+      - "9000:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+    environment:
+      - DEFAULT_HOST=httpbin.dev
+
+  httpbin:
+    image: kennethreitz/httpbin
+    environment:
+      - VIRTUAL_HOST=httpbin.dev
+      - VIRTUAL_PORT=8080
