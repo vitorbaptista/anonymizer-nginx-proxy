@@ -5,11 +5,11 @@ import pytest
 class TestPrivacy(object):
     @pytest.mark.parametrize('header', (
         'User-Agent',
-        'Accept',
-        'Accept-Encoding',
         'Accept-Language',
         'Referer',
         'X-Real-IP',
+        'X-Forwarded-For',
+        'From',
     ))
     def test_removes_header(self, server_url, header):
         res = requests.get(
